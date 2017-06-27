@@ -2,7 +2,6 @@ import Component, { tracked } from "@glimmer/component";
 
 export default class ColorSort extends Component {
 
-  @tracked items: any[] = [];
   @tracked itemsOfItems: any[] = [];
 
   constructor(options) {
@@ -16,9 +15,8 @@ export default class ColorSort extends Component {
           colors: temp
         });
         temp = [];
-      }
-    }
-    console.log(this.items)
+      };
+    };
   }
 
 }
