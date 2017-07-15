@@ -4562,6 +4562,16 @@ symlink-or-copy@^1.0.0, symlink-or-copy@^1.0.1, symlink-or-copy@^1.1.8:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/symlink-or-copy/-/symlink-or-copy-1.1.8.tgz#cabe61e0010c1c023c173b25ee5108b37f4b4aa3"
 
+tachyons-sass@^4.7.1:
+  version "4.7.4"
+  resolved "https://registry.yarnpkg.com/tachyons-sass/-/tachyons-sass-4.7.4.tgz#47199472f444f1451692ec4509c5da700569ea57"
+  dependencies:
+    tachyons "^4.7.4"
+
+tachyons@^4.7.4:
+  version "4.7.4"
+  resolved "https://registry.yarnpkg.com/tachyons/-/tachyons-4.7.4.tgz#eca4ffa15c1f06a357f088c6d0e687fc5f0408cc"
+
 tap-parser@^5.1.0:
   version "5.3.3"
   resolved "https://registry.yarnpkg.com/tap-parser/-/tap-parser-5.3.3.tgz#53ec8a90f275d6fff43f169e56a679502a741185"

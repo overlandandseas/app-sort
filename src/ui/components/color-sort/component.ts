@@ -16,17 +16,17 @@ export default class ColorSort extends Component {
     this._generate100RandomColorsFast(options);
   }
 
-  // action
+  // actions
   sortHue() {
-    this.sort([1, 0, 0]);
+    this._sort([1, 0, 0]);
   }
 
   sortSat() {
-    this.sort([0, 1, 0]);
+    this._sort([0, 1, 0]);
   }
 
   sortLig() {
-    this.sort([0, 0, 1]);
+    this._sort([0, 0, 1]);
   }
 
   defaultOrder() {
@@ -37,7 +37,10 @@ export default class ColorSort extends Component {
     this.colors = Array.from(this.usedColors).sort((a, b) => a.d - b.d).map(i => i.colorString);
   }
 
-  sort(BALANCE: number[]) {
+
+
+
+  _sort(BALANCE: number[]) {
         let arr = Array.from(this.usedColors);
 
         arr = arr.sort((a, b) => {
@@ -46,20 +49,11 @@ export default class ColorSort extends Component {
           return aFactor - bFactor;
         });
         this.colors = arr.map(i => i.colorString);
-        // this._addThis(arr);
   }
-
-  // async _addThis(arr: ColorItem[]) {
-  //   for(let item of arr) {
-  //     await setTimeout( () => {
-  //       this.colors = this.colors.concat([item.colorString]);
-  //     }, 1000);
-  //   }
-  // }
 
   _generate100RandomColorsFast(options) {
     let arr = [];
-    for (var c = 1; c < 1000; c++) {
+    for (var c = 1; c < 15; c++) {
       let color: ColorItem;
       while(this.usedColors.has(color = new ColorItem()));
       this.usedColors.add(color);

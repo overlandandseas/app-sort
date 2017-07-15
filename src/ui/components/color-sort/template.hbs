@@ -6,26 +6,14 @@
       <button class="bg-white black br2 pa2 ba pointer b--black dim mr2 mb2" onclick={{action sortSat}}>Sort Saturation</button>
       <button class="bg-white black br2 pa2 ba pointer b--black dim mr2 mb2" onclick={{action sortLig}}>Sort Luminace</button>
       <button class="bg-white black br2 pa2 ba pointer b--black dim mr2 mb2" onclick={{action sortDelta}}>Sort Delta</button>
+
+    </div>
+    <div class="pa2">
+      <p class=""><input type="text" class=" br2 ba pa2 b--black-20" placeholder="Add Your Own"/></p>
     </div>
 
   </div>
   <div class="fl w-two-thirds-l w-100">
-    {{!-- {{#each itemsOfItems key="@index" as |item|}}
-      {{#if item.even}}
-        <div class="flex justify-between pr5 pl5 pt2 pb2">
-          {{#each item.colors key="@index2" as |color|}}
-            <color-item @color={{color}} />
-          {{/each}}
-        </div>
-      {{else}}
-        <div class="flex justify-around pa5">
-          {{#each item.colors key="@index2" as |color|}}
-            <color-item @color={{color}} />
-          {{/each}}
-        </div>
-      {{/if}}
-    {{/each}} --}}
-    {{!-- <div class="fl"> --}}
       {{#each colors key="@index" as |colorString|}}
       <div class="fl w-20" >
         <div class="br-100 w3 h3 white" style="background-color: {{colorString}};">
