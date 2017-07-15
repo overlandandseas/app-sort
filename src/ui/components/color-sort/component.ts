@@ -14,6 +14,7 @@ export default class ColorSort extends Component {
     this.usedColors = new Set();
 
     this._generate100RandomColorsFast(options);
+    this.sortHue();
   }
 
   // actions
@@ -37,8 +38,23 @@ export default class ColorSort extends Component {
     this.colors = Array.from(this.usedColors).sort((a, b) => a.d - b.d).map(i => i.colorString);
   }
 
+  handleKeyDown(evt) {
+    if (evt.which === 13) {
+      const { value } = evt.target
+      if ((/^#(?:[0-9a-fA-F]{3}){1,2}$/).test(value)) {
+        this.usedColors.add(new ColorItem(value.replace(
+          /^#?([a-f\d])([a-f\d])([a-f\d])$/i,
+          (m, r, g, b) => r + r + g + g + b + b
+        )));
+        this.sortHue();
+      }
+    }
+  }
 
-
+  addRandomColor() {
+    this.usedColors.add(new ColorItem());
+    this.sortHue();
+  }
 
   _sort(BALANCE: number[]) {
         let arr = Array.from(this.usedColors);
@@ -53,7 +69,7 @@ export default class ColorSort extends Component {
 
   _generate100RandomColorsFast(options) {
     let arr = [];
-    for (var c = 1; c < 15; c++) {
+    for (var c = 1; c <= 24; c++) {
       let color: ColorItem;
       while(this.usedColors.has(color = new ColorItem()));
       this.usedColors.add(color);

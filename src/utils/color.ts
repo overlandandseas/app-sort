@@ -12,15 +12,29 @@ export default class ColorItem  {
 
   d: number;
 
-  constructor() {
+  constructor(colorString?: string) {
+    let RED, GREEN, BLUE;
 
-    const RED = Math.random();
-    const GREEN = Math.random();
-    const BLUE = Math.random();
 
-    this.r = ~~(RED * 255);
-    this.g = ~~(GREEN * 255);
-    this.b = ~~(BLUE * 255);
+    if (colorString) {
+      const rgbArray = (/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i)
+        .exec(colorString)
+        .slice(1);
+
+      [ this.r, this.g, this.b ] = rgbArray.map(i => parseInt(i, 16));
+      [ RED, GREEN, BLUE ] = [ this.r, this.g, this.b ].map( i => i / 255);
+
+    } else {
+      RED = Math.random();
+      GREEN = Math.random();
+      BLUE = Math.random();
+
+      this.r = ~~(RED * 255);
+      this.g = ~~(GREEN * 255);
+      this.b = ~~(BLUE * 255);
+    }
+
+
 
     const cmax = Math.max(RED, GREEN, BLUE);
     const cmin = Math.min(RED, GREEN, BLUE);
@@ -44,7 +58,7 @@ export default class ColorItem  {
     }[cmax] / 6;
 
 
-    this.colorString = `#${_padNumber(this.r)}${_padNumber(this.g)}${_padNumber(this.b)}`
+    this.colorString = `#${_padNumber(this.r)}${_padNumber(this.g)}${_padNumber(this.b)}`;
   }
 
   _getRandomColorString () {

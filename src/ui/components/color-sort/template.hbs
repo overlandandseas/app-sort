@@ -9,17 +9,19 @@
 
     </div>
     <div class="pa2">
-      <p class=""><input type="text" class=" br2 ba pa2 b--black-20" placeholder="Add Your Own"/></p>
+      <preview-input  @handleKeyDown={{action handleKeyDown}} @colorString={{previewString}} />
     </div>
+    <button class="bg-white black br2 pa2 ba pointer b--black dim mr2 mb2" onclick={{action addRandomColor}}>Add RandomColor</button>
 
   </div>
   <div class="fl w-two-thirds-l w-100">
       {{#each colors key="@index" as |colorString|}}
-      <div class="fl w-20" >
+      <div class="fl w-25" >
         <div class="br-100 w3 h3 white" style="background-color: {{colorString}};">
         </div>
         {{colorString}}
       </div>
       {{/each}}
   </div>
+
 </div>
