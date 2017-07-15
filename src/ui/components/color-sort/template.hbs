@@ -1,23 +1,37 @@
 <div id="color-sort-app">
   <div class="fl w-third-l w-100 pa5 tc">
-    <h1>Color Sort</h1>
-    <input type="text" >
+    <div class="pa2">
+      <button class="bg-white black br2 pa2 ba pointer b--black dim mr2 mb2" onclick={{action defaultOrder}}>Default (Random)</button>
+      <button class="bg-white black br2 pa2 ba pointer b--black dim mr2 mb2" onclick={{action sortHue}}>Sort Hue</button>
+      <button class="bg-white black br2 pa2 ba pointer b--black dim mr2 mb2" onclick={{action sortSat}}>Sort Saturation</button>
+      <button class="bg-white black br2 pa2 ba pointer b--black dim mr2 mb2" onclick={{action sortLig}}>Sort Luminace</button>
+      <button class="bg-white black br2 pa2 ba pointer b--black dim mr2 mb2" onclick={{action sortDelta}}>Sort Delta</button>
+    </div>
+
   </div>
   <div class="fl w-two-thirds-l w-100">
-    {{#each itemsOfItems key="@index" as |item|}}
+    {{!-- {{#each itemsOfItems key="@index" as |item|}}
       {{#if item.even}}
-      <div class="flex justify-between pr5 pl5 pt2 pb2">
-        {{#each item.colors key="@index2" as |color|}}
-          <div class="br-100 w3 h3" style="background-color: {{color}};"></div>
-        {{/each}}
-      </div>
+        <div class="flex justify-between pr5 pl5 pt2 pb2">
+          {{#each item.colors key="@index2" as |color|}}
+            <color-item @color={{color}} />
+          {{/each}}
+        </div>
       {{else}}
-      <div class="flex justify-around pa5">
-        {{#each item.colors key="@index2" as |color|}}
-          <div class="br-100 w3 h3" style="background-color: {{color}};"></div>
-        {{/each}}
-      </div>
+        <div class="flex justify-around pa5">
+          {{#each item.colors key="@index2" as |color|}}
+            <color-item @color={{color}} />
+          {{/each}}
+        </div>
       {{/if}}
-    {{/each}}
+    {{/each}} --}}
+    {{!-- <div class="fl"> --}}
+      {{#each colors key="@index" as |colorString|}}
+      <div class="fl w-20" >
+        <div class="br-100 w3 h3 white" style="background-color: {{colorString}};">
+        </div>
+        {{colorString}}
+      </div>
+      {{/each}}
   </div>
 </div>
