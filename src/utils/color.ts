@@ -17,12 +17,13 @@ export default class ColorItem  {
 
 
     if (colorString) {
-      const rgbArray = (/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i)
-        .exec(colorString)
-        .slice(1);
+      // const rgbArray =
 
-      [ this.r, this.g, this.b ] = rgbArray.map(i => parseInt(i, 16));
-      [ RED, GREEN, BLUE ] = [ this.r, this.g, this.b ].map( i => i / 255);
+      const rgb = [ this.r, this.g, this.b ] = (/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i)
+        .exec(colorString)
+        .slice(1)
+        .map(i => parseInt(i, 16));
+      [ RED, GREEN, BLUE ] = rgb.map( i => i / 255);
 
     } else {
       RED = Math.random();
