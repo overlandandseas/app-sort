@@ -17,7 +17,6 @@ export default class ColorItem  {
 
 
     if (colorString) {
-      // const rgbArray =
 
       const rgb = [ this.r, this.g, this.b ] = (/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i)
         .exec(colorString)
