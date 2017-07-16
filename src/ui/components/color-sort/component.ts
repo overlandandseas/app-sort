@@ -31,11 +31,11 @@ export default class ColorSort extends Component {
   }
 
   defaultOrder() {
-    this.colors = Array.from(this.usedColors).map(i => i.colorString);
+    this.colors = Array.from(this.usedColors);
   }
 
   sortDelta() {
-    this.colors = Array.from(this.usedColors).sort((a, b) => a.d - b.d).map(i => i.colorString);
+    this.colors = Array.from(this.usedColors).sort((a, b) => a.d - b.d);
   }
 
   handleKeyDown(evt) {
@@ -64,7 +64,7 @@ export default class ColorSort extends Component {
           const bFactor = (b.h * BALANCE[0] + b.s * BALANCE[1] + b.l * BALANCE[2]) / 3
           return aFactor - bFactor;
         });
-        this.colors = arr.map(i => i.colorString);
+        this.colors = arr;
   }
 
   _generate100RandomColorsFast(options) {

@@ -12,6 +12,8 @@ export default class ColorItem  {
 
   d: number;
 
+  rgbs: string;
+
   constructor(colorString?: string) {
     let RED, GREEN, BLUE;
 
@@ -59,6 +61,7 @@ export default class ColorItem  {
 
 
     this.colorString = `#${_padNumber(this.r)}${_padNumber(this.g)}${_padNumber(this.b)}`;
+    this.rgbs = `${this.r}, ${this.g}, ${this.b}`;
   }
 
   _getRandomColorString () {
