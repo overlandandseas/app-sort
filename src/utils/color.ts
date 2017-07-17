@@ -19,7 +19,6 @@ export default class ColorItem  {
 
 
     if (colorString) {
-
       const rgb = [ this.r, this.g, this.b ] = (/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i)
         .exec(colorString)
         .slice(1)
@@ -47,19 +46,17 @@ export default class ColorItem  {
 
     if (cmin === cmax) {
       this.h = this.s = 0;
-      return;
+    } else {
+      this.s = this.l > 0.5 ? delta / (2 - cmin - cmax) : delta / (cmin + cmax);
+
+
+      this.h = {
+        [RED]: (GREEN - BLUE) / delta + (GREEN < BLUE ? 6: 0),
+        [GREEN]: (BLUE - RED) / delta + 2,
+        [BLUE]: (RED - GREEN) / delta + 4
+      }[cmax] / 6;
     }
-
-    this.s = this.l > 0.5 ? delta / (2 - cmin - cmax) : delta / (cmin + cmax);
-
-
-    this.h = {
-      [RED]: (GREEN - BLUE) / delta + (GREEN < BLUE ? 6: 0),
-      [GREEN]: (BLUE - RED) / delta + 2,
-      [BLUE]: (RED - GREEN) / delta + 4
-    }[cmax] / 6;
-
-
+    
     this.colorString = `#${_padNumber(this.r)}${_padNumber(this.g)}${_padNumber(this.b)}`;
     this.rgbs = `${this.r}, ${this.g}, ${this.b}`;
   }

@@ -18,7 +18,7 @@ export default class ColorSort extends Component {
     this.usedColors = new Set();
     this.currentPosition = 0;
 
-    this._generate100RandomColorsFast(options);
+    // this._generate100RandomColorsFast(options);
     this.sortHue();
     this.showLeftArrow = false;
     this.showRightArrow = this.currentPosition < this.colors.length - 1;
