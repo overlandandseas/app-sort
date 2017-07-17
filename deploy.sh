@@ -2,10 +2,11 @@
 
 git checkout gh-pages
 git reset --hard origin/master
+git pull
 
 ember build -e=production
 
-ls -1 | grep -v -E '^dist|CNAME|circle.yml$' | xargs rm -rf
+ls -1 | grep -v -E '^node_moodules|dist|CNAME|circle.yml$' | xargs rm -rf
 mv dist/* ./
 mv dist/.* ./
 rm -rf dist
