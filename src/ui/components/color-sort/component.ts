@@ -1,17 +1,22 @@
 import Component, { tracked } from "@glimmer/component";
-// import ColorItem from "./color-item/component";
 import ColorItem from '../../../utils/color';
 
 export default class ColorSort extends Component {
 
   @tracked colors: any[];
+  @tracked showLeftArrow: boolean;
+  @tracked showRightArray: boolean;
 
   itemsOfItems: string[] = [];
   usedColors: Set<ColorItem>;
+  contentContainer: HTMLElement;
+  currentPosition: number;
+
 
   constructor(options) {
     super(options);
     this.usedColors = new Set();
+    this.currentPosition = 0;
 
     this._generate100RandomColorsFast(options);
     this.sortHue();
@@ -31,28 +36,49 @@ export default class ColorSort extends Component {
   }
 
   defaultOrder() {
-    this.colors = Array.from(this.usedColors);
+    this.colors = this._universalMap(Array.from(this.usedColors));
   }
 
   sortDelta() {
-    this.colors = Array.from(this.usedColors).sort((a, b) => a.d - b.d);
+    this.colors = this._universalMap(Array.from(this.usedColors).sort((a, b) => a.d - b.d));
   }
 
   handleKeyDown(evt) {
     if (evt.which === 13) {
       const { value } = evt.target
       if ((/^#(?:[0-9a-fA-F]{3}){1,2}$/).test(value)) {
-        this.usedColors.add(new ColorItem(value.replace(
+        this._addItem(new ColorItem(value.replace(
           /^#?([a-f\d])([a-f\d])([a-f\d])$/i,
           (m, r, g, b) => r + r + g + g + b + b
         )));
-        this.sortHue();
       }
     }
   }
 
   addRandomColor() {
-    this.usedColors.add(new ColorItem());
+
+    this._addItem(new ColorItem());
+    console.log(this.usedColors)
+    console.log(this.colors)
+  }
+
+  shiftLeft(evt) {
+    let contentContainer =  document.getElementById('app-container');
+
+    this.currentPosition--;
+    console.log('leftclick', this.currentPosition)
+    contentContainer.style.transform = `translateX(${this.currentPosition * -384}px)`;
+  }
+
+  shiftRight(evt) {
+    let contentContainer =  document.getElementById('app-container');
+
+    this.currentPosition++;
+    contentContainer.style.transform = `translateX(${this.currentPosition * -384}px)`;
+  }
+
+  _addItem(item: ColorItem) {
+    this.usedColors.add(item);
     this.sortHue();
   }
 
@@ -64,18 +90,27 @@ export default class ColorSort extends Component {
           const bFactor = (b.h * BALANCE[0] + b.s * BALANCE[1] + b.l * BALANCE[2]) / 3
           return aFactor - bFactor;
         });
-        this.colors = arr;
+        this.colors = this._universalMap(arr);
   }
 
   _generate100RandomColorsFast(options) {
     let arr = [];
-    for (var c = 1; c <= 24; c++) {
+    for (var c = 1; c <= 6; c++) {
       let color: ColorItem;
       while(this.usedColors.has(color = new ColorItem()));
       this.usedColors.add(color);
       arr.push(color);
     }
     this.colors = arr.map(i => i.colorString );
+  }
+
+  _universalMap(arr: any[]) {
+    return arr
+      .map((value, index, array) => index % 24 === 0
+        ? arr.slice(index, index + 24)
+        : null)
+      .filter( i => i);
+    // return arr;
   }
 
   // _generate100RandomColors(options) {

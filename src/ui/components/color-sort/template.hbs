@@ -15,15 +15,36 @@
 
   </div>
   <div class="w-two-thirds-l w-100" style="background: url('/assets/iphonecrapped.png') no-repeat; background-position-x: center; background-size: contain; height: 900px;">
-    <div class="relative center ba bw1 b--black-50 br3" style="background-image: url('/assets/ios-7-wallpaper-galaxy.jpg'); background-size: cover; width: 394px; top: 104px; height:688px; padding: 36px 20px;">
-      {{#each colors key="@index" as |colorItem|}}
-      <div class="fl w-25 mb3" >
-        <div class="br4 center white mb1" style="background-color: rgba({{colorItem.rgbs}}, 1); height: 60px; width: 60px;">
-        </div>
-        <div class="white helvetica tc" style="font-size: 0.75rem;">{{colorItem.colorString}}</div>
+
+
+    <div class=" truncate relative center ba bw1 b--black-50 br3" style="background-image: url('/assets/ios-7-wallpaper-galaxy.jpg'); background-size: cover; width: 394px; top: 104px; height:688px; padding: 36px 20px;">
+      <div class="flex" style="width: fit-content; transition: transform 0.5s ease-in;" id="app-container">
+      {{#each colors key="@index" as |colorArray|}}
+      <div style="width:350px" class="mr4">
+        {{#each colorArray key="@index" as |colorItem|}}
+          <div class="fl w-25 mb3" >
+            <div class="br4 center white mb1" style="background-color: rgba({{colorItem.rgbs}}, 0.7); height: 60px; width: 60px;">
+            </div>
+            <div class="white helvetica tc truncate" style="font-size: 0.75rem;">{{colorItem.colorString}}</div>
+          </div>
+        {{/each}}
       </div>
       {{/each}}
+      </div>
     </div>
+      <button onclick={{action shiftLeft}} class="relative pointer bn bg-white" style="top: -300px; left: 9vw;">
+        <svg class="w3 grow relative pointer black-70" data-icon="chevronLeft" viewBox="0 0 32 32" style="fill:currentcolor;">
+        <title>chevronLeft icon</title>
+        <path d="M20 1 L24 5 L14 16 L24 27 L20 31 L6 16 z"></path>
+      </svg>
+    </button>
+    <button onclick={{action shiftRight}} class="relative pointer bn bg-white" style="top: -300px; left: 45vw">
+      <svg class="w3 grow black-70" data-icon="chevronRight" viewBox="0 0 32 32" style="fill:currentColor;" >
+      <title>chevronRight icon</title>
+      <path d="M12 1 L26 16 L12 31 L8 27 L18 16 L8 5 z"></path>
+      </svg>
+  </button>
+
   </div>
 
 </div>
