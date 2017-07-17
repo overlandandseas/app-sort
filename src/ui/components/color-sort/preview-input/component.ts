@@ -6,7 +6,6 @@ export default class PreviewInput extends Component {
   @tracked invalidInput: boolean= false;
 
   updatePreview(evt) {
-    console.log('from updatePreview', evt)
     this.colorString = evt.target.value;
 
     this.invalidInput = this.colorString
