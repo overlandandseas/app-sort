@@ -5,7 +5,7 @@ export default class ColorSort extends Component {
 
   @tracked colors: any[];
   @tracked showLeftArrow: boolean;
-  @tracked showRightArray: boolean;
+  @tracked showRightArrow: boolean;
 
   itemsOfItems: string[] = [];
   usedColors: Set<ColorItem>;
@@ -20,6 +20,8 @@ export default class ColorSort extends Component {
 
     this._generate100RandomColorsFast(options);
     this.sortHue();
+    this.showLeftArrow = false;
+    this.showRightArrow = this.currentPosition < this.colors.length - 1;
   }
 
   // actions
@@ -66,7 +68,8 @@ export default class ColorSort extends Component {
     let contentContainer =  document.getElementById('app-container');
 
     this.currentPosition--;
-    console.log('leftclick', this.currentPosition)
+    this.showRightArrow = this.currentPosition < this.colors.length - 1;
+    this.showLeftArrow = this.currentPosition > 0;
     contentContainer.style.transform = `translateX(${this.currentPosition * -384}px)`;
   }
 
@@ -74,12 +77,16 @@ export default class ColorSort extends Component {
     let contentContainer =  document.getElementById('app-container');
 
     this.currentPosition++;
+    this.showRightArrow = this.currentPosition < this.colors.length - 1;
+    this.showLeftArrow = true;
     contentContainer.style.transform = `translateX(${this.currentPosition * -384}px)`;
   }
 
   _addItem(item: ColorItem) {
     this.usedColors.add(item);
     this.sortHue();
+    this.showRightArrow = this.currentPosition < this.colors.length - 1;
+    this.showLeftArrow = this.currentPosition > 0;
   }
 
   _sort(BALANCE: number[]) {
@@ -95,7 +102,7 @@ export default class ColorSort extends Component {
 
   _generate100RandomColorsFast(options) {
     let arr = [];
-    for (var c = 1; c <= 6; c++) {
+    for (var c = 1; c <= 36; c++) {
       let color: ColorItem;
       while(this.usedColors.has(color = new ColorItem()));
       this.usedColors.add(color);
@@ -110,7 +117,7 @@ export default class ColorSort extends Component {
         ? arr.slice(index, index + 24)
         : null)
       .filter( i => i);
-    // return arr;
+
   }
 
   // _generate100RandomColors(options) {

@@ -32,19 +32,36 @@
       {{/each}}
       </div>
     </div>
-      <button onclick={{action shiftLeft}} class="relative pointer bn bg-white" style="top: -300px; left: 9vw;">
-        <svg class="w3 grow relative pointer black-70" data-icon="chevronLeft" viewBox="0 0 32 32" style="fill:currentcolor;">
-        <title>chevronLeft icon</title>
-        <path d="M20 1 L24 5 L14 16 L24 27 L20 31 L6 16 z"></path>
-      </svg>
-    </button>
-    <button onclick={{action shiftRight}} class="relative pointer bn bg-white" style="top: -300px; left: 45vw">
+    {{#if showLeftArrow}}
+      <span onclick={{action shiftLeft}} class="relative pointer" style="top: -300px; left: 9vw;">
+        <svg class="w3 grow relative black-70" data-icon="chevronLeft" viewBox="0 0 32 32" style="fill:currentcolor;">
+          <title>chevronLeft icon</title>
+          <path d="M20 1 L24 5 L14 16 L24 27 L20 31 L6 16 z"></path>
+        </svg>
+      </span>
+    {{else}}
+      <span class="relative o-0" style="top: -300px; left: 9vw;">
+        <svg class="w3 grow relative black-70" data-icon="chevronLeft" viewBox="0 0 32 32" style="fill:currentcolor;">
+          <title>chevronLeft icon</title>
+          <path d="M20 1 L24 5 L14 16 L24 27 L20 31 L6 16 z"></path>
+        </svg>
+      </span>
+    {{/if}}
+    {{#if showRightArrow}}
+      <span onclick={{action shiftRight}} class="relative pointer" style="top: -300px; left: 45vw">
+        <svg class="w3 grow black-70" data-icon="chevronRight" viewBox="0 0 32 32" style="fill:currentColor;" >
+          <title>chevronRight icon</title>
+          <path d="M12 1 L26 16 L12 31 L8 27 L18 16 L8 5 z"></path>
+        </svg>
+      </span>
+    {{else}}
+    <span class="relative o-0" style="top: -300px; left: 45vw">
       <svg class="w3 grow black-70" data-icon="chevronRight" viewBox="0 0 32 32" style="fill:currentColor;" >
-      <title>chevronRight icon</title>
-      <path d="M12 1 L26 16 L12 31 L8 27 L18 16 L8 5 z"></path>
+        <title>chevronRight icon</title>
+        <path d="M12 1 L26 16 L12 31 L8 27 L18 16 L8 5 z"></path>
       </svg>
-  </button>
-
+    </span>
+    {{/if}}
   </div>
 
 </div>
