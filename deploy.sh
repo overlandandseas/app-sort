@@ -12,6 +12,7 @@ rm -rf dist
 
 git add .
 git commit -m "gh pages deploy"
-git push
+git push -f
 
 git checkout master
+yarn install
