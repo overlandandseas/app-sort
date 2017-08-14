@@ -1,0 +1,40 @@
+<input type="text"
+       class=" br2 ba pa2 b--black-50 w-100"
+       placeholder="Add Your Own bullshit"
+       onkeydown={{action @handleKeyDown handleSelectDown}}
+       oninput={{action getThis}}>
+{{#if loaded}}
+  <div class="bg-white ba b--black-50 br2 helvetica">
+  {{#each searchResults key="@index" as |app index|}}
+  {{#if app.selected}}
+    <div class="pl3 pt2 pb2 flex items-center bg-black-20"
+    onmouseover={{action selectItem index}} >
+      <div class=" br4 white mb1" style="background: url({{app.image}}); height: 60px; width: 60px;">
+      </div>
+      <div class="tl pl3">
+        <span class="b">{{app.title}}</span>
+        <br>
+        {{app.author}}
+      </div>
+    </div>
+  {{else}}
+    <div class="pl3 pt2 pb2 flex items-center "
+    onmouseover={{action selectItem index}} >
+      <div class=" br4 white mb1"
+        style="background: url({{app.image}}); height: 60px; width: 60px;">
+      </div>
+      <div class="tl pl3">
+        <span class="b">{{app.title}}</span>
+        <br>
+        {{app.author}}
+      </div>
+    </div>
+  {{/if}}
+    {{/each}}
+  </div>
+{{/if}}
+{{#if loading}}
+  <div class="bg-white ba b--black-50 br2 helvetica">
+    <p class="pa2 tl">Loading...</p>
+  </div>
+{{/if}}

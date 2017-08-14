@@ -1,17 +1,18 @@
 <div id="color-sort-app" class="flex-l mt5">
   <div class="w-third-l w-100 pa5 tc">
-    <div class="pa2">
-      <button class="bg-white black br2 pa2 ba pointer b--black dim mr2 mb2" onclick={{action defaultOrder}}>Default (Random)</button>
-      <button class="bg-white black br2 pa2 ba pointer b--black dim mr2 mb2" onclick={{action sortHue}}>Sort Hue</button>
+    {{!-- <div class="pa2">
+        <button class="bg-white black br2 pa2 ba pointer b--black dim mr2 mb2" onclick={{action defaultOrder}}>Default (Random)</button>
+        <button class="bg-white black br2 pa2 ba pointer b--black dim mr2 mb2" onclick={{action sortHue}}>Sort Hue</button>
       <button class="bg-white black br2 pa2 ba pointer b--black dim mr2 mb2" onclick={{action sortSat}}>Sort Saturation</button>
       <button class="bg-white black br2 pa2 ba pointer b--black dim mr2 mb2" onclick={{action sortLig}}>Sort Luminace</button>
       <button class="bg-white black br2 pa2 ba pointer b--black dim mr2 mb2" onclick={{action sortDelta}}>Sort Delta</button>
 
-    </div>
+    </div> --}}
     <div class="pa2">
-      <preview-input  @handleKeyDown={{action handleKeyDown}} @colorString={{previewString}} />
+      {{!-- <preview-input  @handleKeyDown={{action handleKeyDown}} @colorString={{previewString}} /> --}}
+      <app-select @handleKeyDown={{action handleKeyDown}} />
     </div>
-    <button class="bg-white black br2 pa2 ba pointer b--black dim mr2 mb2" onclick={{action addRandomColor}}>Add RandomColor</button>
+    <button class="mt3 bg-white black br2 pa2 ba pointer b--black dim mr2 mb2" onclick={{action addRandomColor}}>Add RandomColor</button>
 
   </div>
   <div class="w-two-thirds-l w-100" style="background: url('assets/iphonecrapped.png') no-repeat; background-position-x: center; background-size: contain; height: 900px;">
@@ -65,14 +66,3 @@
   </div>
 
 </div>
-
-
-402 x 715.922 // 208
-
-830.844 // 175
-
-y = f(x)
-
-y = 208; x = 715.922
-
-y = 175; x = 830.844

@@ -1,5 +1,6 @@
 import Component, { tracked } from "@glimmer/component";
 import ColorItem from '../../../utils/color';
+import ItemStore from '../../../utils/item-store';
 
 export default class ColorSort extends Component {
 
@@ -11,6 +12,7 @@ export default class ColorSort extends Component {
   usedColors: Set<ColorItem>;
   contentContainer: HTMLElement;
   currentPosition: number;
+  store: ItemStore;
 
 
   constructor(options) {
@@ -19,6 +21,8 @@ export default class ColorSort extends Component {
     this.currentPosition = 0;
 
     // this._generate100RandomColorsFast(options);
+    this.store = new ItemStore();
+    this.usedColors = this.store.fetch();
     this.sortHue();
     this.showLeftArrow = false;
     this.showRightArrow = this.currentPosition < this.colors.length - 1;
@@ -45,23 +49,17 @@ export default class ColorSort extends Component {
     this.colors = this._universalMap(Array.from(this.usedColors).sort((a, b) => a.d - b.d));
   }
 
-  handleKeyDown(evt) {
+  handleKeyDown(func, evt) {
+    let color = func(evt);
+
     if (evt.which === 13) {
-      const { value } = evt.target
-      if ((/^#(?:[0-9a-fA-F]{3}){1,2}$/).test(value)) {
-        this._addItem(new ColorItem(value.replace(
-          /^#?([a-f\d])([a-f\d])([a-f\d])$/i,
-          (m, r, g, b) => r + r + g + g + b + b
-        )));
-      }
+      this._addItem(new ColorItem(color));
     }
   }
 
   addRandomColor() {
 
     this._addItem(new ColorItem());
-    console.log(this.usedColors)
-    console.log(this.colors)
   }
 
   shiftLeft(evt) {
@@ -84,6 +82,7 @@ export default class ColorSort extends Component {
 
   _addItem(item: ColorItem) {
     this.usedColors.add(item);
+    this.store.store(this.usedColors);
     this.sortHue();
     this.showRightArrow = this.currentPosition < this.colors.length - 1;
     this.showLeftArrow = this.currentPosition > 0;
@@ -102,7 +101,7 @@ export default class ColorSort extends Component {
 
   _generate100RandomColorsFast(options) {
     let arr = [];
-    for (var c = 1; c <= 36; c++) {
+    for (var c = 1; c <= 100; c++) {
       let color: ColorItem;
       while(this.usedColors.has(color = new ColorItem()));
       this.usedColors.add(color);
