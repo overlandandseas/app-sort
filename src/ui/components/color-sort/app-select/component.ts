@@ -25,7 +25,7 @@ export default class AppSelect extends Component {
         title: v.title,
         author: v.author,
         selected: i === index,
-        image: v.image
+        url: v.url
     }));
   }
 
@@ -56,7 +56,7 @@ export default class AppSelect extends Component {
     }
     this.searchResults[this.selected]
     return this.searchResults[this.selected]
-    ? this.searchResults[this.selected].color
+    ? this.searchResults[this.selected]
     : '';
   }
 
@@ -68,8 +68,8 @@ export default class AppSelect extends Component {
         .map(i => ({
           author: i.artistName,
           title: i.trackName,
-          image: i.artworkUrl60,
-          color: '#ff6300'
+          url: i.artworkUrl60,
+          // color: '#ff6300'
         })));
   }
 

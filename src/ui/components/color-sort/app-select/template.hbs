@@ -9,7 +9,7 @@
   {{#if app.selected}}
     <div class="pl3 pt2 pb2 flex items-center bg-black-20"
     onmouseover={{action selectItem index}} >
-      <div class=" br4 white mb1" style="background: url({{app.image}}); height: 60px; width: 60px;">
+      <div class=" br4 white mb1" style="background: url({{app.url}}); height: 60px; width: 60px;">
       </div>
       <div class="tl pl3">
         <span class="b">{{app.title}}</span>
@@ -21,7 +21,7 @@
     <div class="pl3 pt2 pb2 flex items-center "
     onmouseover={{action selectItem index}} >
       <div class=" br4 white mb1"
-        style="background: url({{app.image}}); height: 60px; width: 60px;">
+        style="background: url({{app.url}}); height: 60px; width: 60px;">
       </div>
       <div class="tl pl3">
         <span class="b">{{app.title}}</span>

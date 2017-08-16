@@ -51,10 +51,10 @@ export default class ColorSort extends Component {
   }
 
   handleKeyDown(func, evt) {
-    let color = func(evt);
+    let app = func(evt);
 
     if (evt.which === 13) {
-      this._addItem(new ColorItem(color));
+      this._addItem(new AppIcon(app));
     }
   }
 
@@ -81,7 +81,7 @@ export default class ColorSort extends Component {
     contentContainer.style.transform = `translateX(${this.currentPosition * -384}px)`;
   }
 
-  _addItem(item: ColorItem) {
+  _addItem(item: any) {
     this.usedColors.add(item);
     this.store.store(this.usedColors);
     this.sortHue();
