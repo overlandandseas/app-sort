@@ -1,5 +1,6 @@
 import Component, { tracked } from "@glimmer/component";
 import ColorItem from '../../../utils/color';
+import AppIcon from '../../../utils/app-icon';
 import ItemStore from '../../../utils/item-store';
 
 export default class ColorSort extends Component {
@@ -9,7 +10,7 @@ export default class ColorSort extends Component {
   @tracked showRightArrow: boolean;
 
   itemsOfItems: string[] = [];
-  usedColors: Set<ColorItem>;
+  usedColors: Set<any>;
   contentContainer: HTMLElement;
   currentPosition: number;
   store: ItemStore;
@@ -118,22 +119,5 @@ export default class ColorSort extends Component {
       .filter( i => i);
 
   }
-
-  // _generate100RandomColors(options) {
-  //   let temp: any[] = [];
-  //   for (var c = 1; c < 100; c++) {
-  //     let color: ColorItem;
-  //     while(this.usedColors.has(color = new ColorItem(options)));
-  //     this.usedColors.add(color);
-  //     temp[c % 5] = ColorItem;
-  //     if(c % 5 === 0) {
-  //       // this.itemsOfItems.push({
-  //       //   colors: temp,
-  //       //   even: (this.itemsOfItems.length + 1) % 2 === 0,
-  //       // });
-  //       temp = [];
-  //     }
-  //   }
-  // }
 
 }

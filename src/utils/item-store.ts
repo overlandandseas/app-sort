@@ -1,18 +1,25 @@
 import ColorItem from './color';
+import AppIcon from './app-icon';
 
 export default class ItemStore {
-  private key = 'color-sort:colors';
+  private key = 'app-sort:apps';
 
-  store(colors: Set<ColorItem>) {
-    const arr = Array.from(colors).map(i => i.colorString);
+  store(icons: Set<AppIcon>) {
+    const arr = Array.from(icons).map(i => ({
+      r: i.r,
+      g: i.g,
+      b: i.b,
+      url: i.url,
+      title: i.title
+    }));
 
     localStorage.setItem(this.key, JSON.stringify(arr));
   }
 
-  fetch(): Set<ColorItem> {
+  fetch(): Set<AppIcon> {
     const arr = JSON.parse(localStorage.getItem(this.key)) || [];
     let set = new Set();
-    arr.forEach(i => set.add(new ColorItem(i)));
+    arr.forEach(i => set.add(new AppIcon(i)));
     return set;
   }
 
